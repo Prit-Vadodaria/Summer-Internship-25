@@ -32,10 +32,15 @@ A sleek, responsive, and customizable **Business Card Generator** built using HT
 🔧 Usage
 
 Fill in the input fields (Name, Designation, Company, Contact, etc.).
+
 Upload a profile image.
+
 Choose a background theme (Default, Light, Dark).
+
 Click on Generate Card.
+
 The customized card is displayed instantly below the form.
+
 
 ---
 
