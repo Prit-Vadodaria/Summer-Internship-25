@@ -40,12 +40,15 @@ The customized card is displayed instantly below the form.
 ---
 
 📦 Future Enhancements
-```text
+
 🎯 Download/Export business card as PNG or PDF.
+
 🧾 Add QR code with contact details.
-💾 Save multiple templates to localStorage.
+
+💾 Save multiple templates to localStorage
+.
 🌍 Multi-language support.
-```
+
 ---
 
 👨‍💻 Author
