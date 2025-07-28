@@ -38,7 +38,7 @@ A compilation of frontend web development projects completed during my 1-month i
 
 ## 📂 Project Structure
 
-
+```text
 📁 Summer-Internship-25/
 ├── color-picker-theme-generator/     # Final project with live color and theme logic
 ├── todo-list-app/                    # Task tracker with real-time status update
@@ -47,7 +47,7 @@ A compilation of frontend web development projects completed during my 1-month i
 ├── maas-magic-website/               # Food ordering website (responsive)
 ├── filter-js-practice/               # JavaScript event & filter logic demos
 └── README.md                         # Internship project summary
-
+```
 ---
 
 ## 🚀 Key Learnings & Achievements
