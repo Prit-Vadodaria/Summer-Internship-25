@@ -6,14 +6,14 @@ A compilation of frontend web development projects completed during my 1-month i
 
 ## 🗓️ Internship Duration
 
-**26th June 2025 – 26th July 2025**
+**26th May 2025 – 26th June 2025**
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: HTML5, CSS3, JavaScript
-- **Tools**: VS Code, Chrome DevTools
+- **Frontend**: HTML5, CSS3, JavaScript  
+- **Tools**: VS Code, Chrome DevTools  
 - **Libraries**: Pickr.js (for color picking functionality)
 
 ---
@@ -48,10 +48,11 @@ A compilation of frontend web development projects completed during my 1-month i
 ├── filter-js-practice/               # JavaScript event & filter logic demos
 └── README.md                         # Internship project summary
 ```
+📎 Note: Each directory includes a README.md with detailed information about the respective project.
+
 ---
 
-## 🚀 Key Learnings & Achievements
-
+🚀 Key Learnings & Achievements
 🔹 Strengthened core web technologies: HTML, CSS, JavaScript
 🔹 Built modular, responsive UIs without frameworks
 🔹 Learned dynamic DOM manipulation and CSS theming
