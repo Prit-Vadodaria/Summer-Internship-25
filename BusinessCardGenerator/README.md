@@ -23,10 +23,10 @@ A sleek, responsive, and customizable **Business Card Generator** built using HT
 ---
 
 📂 Project Structure
-
+```text
 ├── index.html         # Main HTML file with form and script
 ├── styles.css         # CSS styles and themes
-
+```
 ---
 
 🔧 Usage
