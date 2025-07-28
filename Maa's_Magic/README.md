@@ -34,11 +34,11 @@ A heartwarming and responsive **Home-Cooked Office Meals** website built using H
 ---
 
 ## 📂 Project Structure
-
+```text
 ├── index.html          # Main website with all sections and forms  
 ├── style.css           # Full styling for layout, components, and responsiveness  
 ├── assets/             # Folder containing all image assets used in the site  
-
+```
 ---
 
 📦 Future Enhancements
