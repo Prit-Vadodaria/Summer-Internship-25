@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="A simple restaurant management system to manage tables and orders.">
+    <meta name="keywords" content="restaurant, management, system, tables, orders">
+    <link rel="stylesheet" href="style.css">
+    <title>restuarant management system</title>
+</head>
+<body>
+    <header>
+        <h1>Restaurant Management System</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="menu">
+        <h2>Menu</h2>
+        <div class="menu-list">
+            <!-- Menu items will be dynamically generated here -->
+        </div>
+        <button class="add-btn" onclick="document.querySelector('.form-container-2').style.display = 'block';">Add item</button>
+        <div class="form-container-2" style="display: none;">
+            <form class="add-form">
+                <div class="form-group">
+                    <label for="item-name">Item Name</label>
+                    <input type="text" id="iname" name="iname" required>
+                </div>
+                <div class="form-group">
+                    <label for="item-price">Item-price</label>
+                    <input type="text" id="iprice" name="iprice" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" id="description" name="description" required>
+                </div>
+                <div class="grp-btn">
+                    <button type="submit" onclick="additem()">Add Item</button>
+                    <button type="button" onclick="document.querySelector('.form-container-2').style.display='none'">Cancel</button>  
+                </div>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Restaurant Management System</p>
+    </footer>
+    <script src="common.js"></script>
+    <script>
+        
+        function showform() {
+            document.querySelector('.container').style.display = 'block';
+        }
+        function displaymenu() {
+            const menuList = document.getElementsByClassName('menu-list')[0];
+            menuList.innerHTML = '';  // Clear existing items
+
+            for (let i = 0; i < food.length; i++) {
+                const item = document.createElement('div');
+                item.className = 'menu-item';
+                item.id = `${i}`;  // Set a unique ID for each item
+
+                item.innerHTML = `
+                    <h3>${food[i].name}</h3>
+                    <p>Price: $${food[i].price}</p>
+                    <p>Description: ${food[i].discription}</p>  <!-- show description here -->
+                    <button class="rmv-btn" onclick="removeitem(event)">Remove</button>
+                `;
+
+                menuList.appendChild(item);
+            }
+        }
+
+        function additem() {
+            event.preventDefault(); // Prevent form submission
+
+            const itemName = document.getElementById('iname').value;
+            const itemPrice = document.getElementById('iprice').value;
+            const itemDescription = document.getElementById('description').value;
+
+            if (itemName && itemPrice && itemDescription) {
+                food.push({
+                    name: itemName,
+                    price: parseFloat(itemPrice),
+                    discription: itemDescription
+                });
+
+                displaymenu();
+                document.querySelector('.form-container-2').style.display = 'none'; // Hide the form
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        function removeitem(event){
+            const menuList = document.getElementsByClassName('menu-list')[0];
+            const itemid = event.target.parentElement.id; // Get the ID of the item to be removed
+            const item = document.getElementById(itemid);//get the element woith found id
+
+            if (item) {
+                menuList.removeChild(item);
+                food.splice(parseInt(itemid), 1); // Remove item from the food array
+                displaymenu(); // Refresh the menu display
+            }
+        }
+
+        displaymenu();
+
+
+    </script>
+</body>
+</html>

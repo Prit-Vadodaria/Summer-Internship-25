@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple restaurant management system to manage tables and orders.">
+    <meta name="keywords" content="restaurant, management, system, tables, orders">
+    <link rel="stylesheet" href="style.css">
+    <title>Restaurant Management System</title>
+</head>
+<body>
+    <header>
+        <h1>Restaurant Management System</h1>
+        <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+        </nav>
+    </header>
+
+        <section id="tables">
+            <h2>TABLES</h2>
+            <div class="table-list">
+            <!-- Tables will be dynamically generated here -->
+            </div>
+            <button class="add-btn" onclick="addtable()">Add Table</button>
+        </section>
+
+    <footer>
+        <p>&copy; 2025 Restaurant Management System</p>
+    </footer>
+    
+    <script src="common.js"></script>
+    <script>
+        let totaltable = 6;
+        let maxtables = 10;
+        let tablenumber = 6;
+
+        function displaytable() {
+            const tablelist = document.getElementsByClassName('table-list')[0];
+
+            for (let i = 1; i <= totaltable; i++) {
+                const table = document.createElement('div');
+                table.className = 'table';
+                table.id = `${i}`;
+
+                table.innerHTML = `
+                <h3>Table ${i}</h3>
+                <p class="status">Available</p>
+                <button id="t${i}" onclick="takeorder()">Take Order</button>
+                <div class="item-list" style="display: none;">
+                    <h4>items</h4>
+                    <ul class="item-list-ul">
+                    </ul>
+                    <p >Total: $0</p>
+                    <ol class="order-list-ul">
+                    </ol>
+                    <button class="rmv-order-btn" onclick="removeorder()">done</button>
+                </div>
+                `;
+
+                tablelist.appendChild(table);
+
+                
+            }
+        }
+
+        function addtable() {
+            if (tablenumber < maxtables) {
+                tablenumber++;
+                totaltable++;
+
+                const tablelist = document.getElementsByClassName('table-list')[0];
+                const table = document.createElement('div');
+                table.className = 'table';
+                table.id = `${totaltable}`;
+
+                table.innerHTML = `
+                <h3>Table ${totaltable}</h3>
+                <p class="status">Available</p>
+                <button id="t${totaltable}" onclick="takeorder()">Take Order</button>
+                <div class="item-list" style="display: none;">
+                    <h4>items</h4>
+                    <ul class="item-list-ul">
+                    </ul>
+                        <p >Total: $0</p>
+                    <ol class="order-list-ul">
+                    </ol>
+                    <button class="rmv-order-btn" onclick="removeorder()">done</button>
+                </div>
+                `;
+                tablelist.appendChild(table);
+            }
+            else {
+                alert("Maximum number of tables reached.");
+
+            }
+        }
+
+        function takeorder() {
+            const table = event.target.closest(".table");
+            table.querySelector("p.status").textContent = "Occupied";
+            table.getElementsByClassName("item-list")[0].style.display = "block";
+            table.style.height = "auto"; // Adjust height to fit content
+            const itemList = table.querySelector(".item-list-ul");
+            const orderList = table.querySelector(".order-list-ul");
+
+            const orderButton = table.querySelector("button");
+            orderList.innerHTML = ""; // Clear previous orders
+            itemList.innerHTML = ""; // Clear previous items
+            const items = food; // Assuming 'food' is an array of menu items
+
+            items.forEach((item, index) => {
+                const li = document.createElement("li");
+                li.textContent = `${item.name} - $${item.price}`;
+                li.id = `item-${index}`;
+                li.onclick = function() {
+                    const orderItem = document.createElement("li");
+                    orderItem.textContent = `${item.name} - $${item.price}`;
+                    orderList.appendChild(orderItem);
+                    updateTotal(table);
+                };
+                itemList.appendChild(li);
+            });
+        }
+
+        function updateTotal(table) {
+            const orderItems = table.querySelectorAll(".order-list-ul li");
+            let total = 0;
+            orderItems.forEach(item => {
+                const price = parseFloat(item.textContent.split('$')[1]);
+                total += price;
+            });
+            const totalPara = table.querySelector(".item-list p");
+            if (totalPara) {
+                totalPara.textContent = `Total: $${total}`;
+            }
+        }
+
+        function removeorder(){
+            const table = event.target.closest(".table");
+            table.querySelector("p.status").textContent = "Available";
+            table.getElementsByClassName("item-list")[0].style.display = "none";
+            table.style.height = "200px"; // Adjust height to fit content
+            const orderList = table.querySelector(".order-list-ul");
+            orderList.innerHTML = ""; // Clear orders
+            updateTotal(table); // Reset total
+        }
+
+        displaytable(); 
+    </script>
+</body>
+</html>

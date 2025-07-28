@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>ToDoom</h1>
+        <nav>
+            <ul>
+                <li><a href="#addtask">Add Task</a></li>
+                <li><a href="#viewtask">View Tasks</a></li>
+                <li><button id="toggleTheme" onclick="toggleTheme()">Toggle Theme</button></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="addtask">
+            <h2>Add a New Task</h2>
+            <form id="taskForm">
+                <label for="taskName">Task Name:</label>
+                <input type="text" id="taskName" name="taskName" required>
+                <label for="taskDescription">Description:</label>
+                <input type="text" id="taskDescription" name="taskDescription" required>
+                <button type="submit">Add Task</button>
+            </form>
+        </section>
+        <section id="viewtask">
+            <h2>Current Tasks</h2>
+            <ul id="taskList"></ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 todom</p>
+    </footer>
+    <script>
+        let darkmode = false;
+        function toggleTheme() {
+            if (!darkmode) {
+                document.documentElement.style.setProperty('--color-primary', 'black');
+                document.documentElement.style.setProperty('--color-secondary', '#0cc');
+            } else {
+                document.documentElement.style.setProperty('--color-primary', 'white');
+                document.documentElement.style.setProperty('--color-secondary', 'black');
+            }
+            darkmode = !darkmode;
+        }
+
+        const taskForm = document.getElementById('taskForm');
+        const taskList = document.getElementById('taskList');
+        let tasks = [];
+
+        function renderTasks() {
+            taskList.innerHTML = '';
+            tasks.forEach((task, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <div class="${'task-item' + (task.completed ? '-completed' : '')}">
+                        <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="toggleTask(${index})">
+                        <span>${task.name}</span>
+                        <p>${task.description}</p>
+                        <button onclick="deleteTask(${index})">Delete</button>
+                    </div>
+                `;
+                taskList.appendChild(li);
+            });
+        }
+
+        taskForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const taskName = document.getElementById('taskName').value;
+            const taskDescription = document.getElementById('taskDescription').value;
+            tasks.push({
+                name: taskName,
+                description: taskDescription,
+                completed: false
+            });
+            renderTasks();
+            taskForm.reset();
+        });
+
+        window.toggleTask = function(index) {
+            tasks[index].completed = !tasks[index].completed;
+            renderTasks();
+        };
+
+        window.deleteTask = function(index) {
+            tasks.splice(index, 1);
+            renderTasks();
+        };
+
+        renderTasks();
+    </script>
+</body>
+</html>

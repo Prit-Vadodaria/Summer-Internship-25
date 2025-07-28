@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                #clockContainer {
+                position: relative;
+                margin: auto;
+                height: 40vw;
+                /*to make the height and width responsive*/
+                width: 40vw;
+                background-size: 100%;
+                }
+                  
+                #clock {
+                    font-size: 100px;
+                    width: 900px;
+                    margin: 20px;
+                    text-align: center;
+                    border: 2px solid black;
+                    border-radius: 20px; 
+		        }
+                #hour,
+                #minute,
+                #second {
+                    position: absolute;
+                    background: rgb(0, 0, 0);
+                    border-radius: 10px;
+                    transform-origin: bottom;
+                }
+                #hour {
+                    width: 1.8%;
+                    height: 25%;
+                    top: 25%;
+                    left: 48.85%;
+                    opacity: 0.8;
+                }
+                #minute {
+                    width: 1.6%;
+                    height: 30%;
+                    top: 19%;
+                    left: 48.9%;
+                    opacity: 0.8;
+                }
+                #second {
+                    width: 1%;
+                    height: 40%;
+                    top: 9%;
+                    left: 49.25%;
+                    opacity: 0.8;
+                }
+                </style>
+                <title>Document</title>
+</head>
+<body>
+    <script>
+            setInterval(() => {
+            d = new Date(); //object of date()
+            hr = d.getHours();
+            min = d.getMinutes();
+            sec = d.getSeconds();
+            hr_rotation = 30 * hr + min / 2; //converting current time
+            min_rotation = 6 * min;
+            sec_rotation = 6 * sec;
+            am_pm = "AM";
+
+			if (hr > 12) {
+				hr -= 12;
+				am_pm = "PM";
+			}
+			if (hr == 0) {
+				hr = 12;
+				am_pm = "AM";
+			}
+        
+            hour.style.transform = `rotate(${hr_rotation}deg)`; 
+            minute.style.transform = `rotate(${min_rotation}deg)`;
+            second.style.transform = `rotate(${sec_rotation}deg)`;
+
+            let currentTime = hr + ":" + min + ":" + sec + am_pm;
+
+			document.getElementById("clock").innerHTML = currentTime;
+        }, 1000);
+    </script>
+	<div id="clockContainer">
+		<div id="hour"></div>
+		<div id="minute"></div>
+		<div id="second"></div>
+	</div>
+    <br>
+    <div id="clock">08:10:45</div>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maa's Magic - Home-Cooked Office Meals</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            
+            <nav class="nav">
+                <a href="/" class="logo">Maa's Magic</a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#order">Order</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#beamaa">Be A Maa</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Maa's Magic</h1>
+                <p class="tagline">Bringing Maa ke haath ka khana to your office desk.</p>
+                <div class="cta-buttons">
+                    <a href="#menu" class="btn btn-primary">View Menu</a>
+                    <a href="#order" class="btn btn-secondary">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <h2>Today's Special</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-item-image">
+                        <img src="./assets/veg-thali.jpg" alt="veg-thali">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>veg thali</h3>
+                        <p>veg-subjii , panner-subjii , dall-rice , buttermilk , 3 rotiss</p>
+                        <div class="menu-item-footer">
+                            <span class="price">₹250</span>
+                            <a href="#order" class="btn btn-sm">Order Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-image">
+                        <img src="./assets/non-veg-thali.jpg" alt="non-veg-thali">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Veg Biryani</h3>
+                        <p>veg-subjii , non-veg-subjii , dall-rice , buttermilk , 3 rotiss</p>
+                        <div class="menu-item-footer">
+                            <span class="price">₹300</span>
+                            <a href="#order" class="btn btn-sm">Order Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>The Story Behind Maa's Magic</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>At Maa's Magic, we believe that food is not just about taste, but about the love and care that goes into making it. Our team of experienced home chefs brings you authentic, home-cooked meals that will remind you of your mother's cooking.</p>
+                    <p>Every dish is prepared with fresh ingredients and traditional recipes, ensuring that you get the authentic taste of home-cooked food at your office desk.</p>
+                </div>
+                <div class="chef-profiles">
+                    <div class="chef-card">
+                        <img src="./assets/mom1.jpg" alt="Chef 1">
+                        <h3>Chef Priya</h3>
+                        <p>Specializes in North Indian cuisine</p>
+                    </div>
+                    <div class="chef-card">
+                        <img src="./assets/mom2.jpg" alt="Chef 2">
+                        <h3>Chef Meera</h3>
+                        <p>Expert in South Indian dishes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form Section -->
+    <section id="order" class="order-form">
+        <div class="container">
+            <h2>Place Your Order</h2>
+            <form class="form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Company Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="meal">Meal Choice</label>
+                    <select id="meal" name="meal" required>
+                        <option value="">Select a meal</option>
+                        <option value="veg-thali">veg-thali - ₹250</option>
+                        <option value="non-veg-thali">non-veg-thali - ₹350</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="noofdishes">number of dishes</label>
+                    <input type="text" id="noofdishes" name="noofdishes" value="1" >
+                </div>
+                <div class="form-group">
+                    <label for="no.ofroti">number of rotis in each meal ( ₹10/roti )</label>
+                    <input type="text" id="roti" name="roti" value="3" >
+                </div>
+                <div class="form-group">
+                    <label for="time">Delivery Time</label>
+                    <input type="time" id="time" name="time" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Delivery Address</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Place Order</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The food tastes just like home! I can't believe I can get such authentic home-cooked meals at my office."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="./assets/user1.jpg" alt="User 1">
+                        <div>
+                            <h4>Rahul Sharma</h4>
+                            <p>Software Engineer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Maa's Magic has been a game-changer for my lunch breaks. The food is delicious and healthy!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="./assets/user2.jpg" alt="User 2">
+                        <div>
+                            <h4>Priya Patel</h4>
+                            <p>Marketing Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Be A Maa Section -->
+    <section id="beamaa" class="be-a-maa">
+        <div class="container">
+            <h2>Be A Maa</h2>
+            <form class="form">
+                <div class="form-group">
+                    <label for="chef-name">Your Name</label>
+                    <input type="text" id="chef-name" name="chef-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="chef-email">Email</label>
+                    <input type="email" id="chef-email" name="chef-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="chef-experience">Cooking Experience (in years)</label>
+                    <input type="number" id="chef-experience" name="chef-experience" required>
+                </div>
+                <div class="form-group">
+                    <label for="meal">Meal Choice to make</label>
+                    <select id="meal-choice" name="meal" required>
+                        <option value="">Select a meal</option>
+                        <option value="butter-chicken">veg-thali</option>
+                        <option value="veg-biryani">non-veg-thali</option>
+                        <option value="both">both</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="address">residency Address / address from where you will be serving</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Maa's Magic</h3>
+                    <p>Bringing love to your plate, one meal at a time.</p>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>Email: info@maasmagic.com</p>
+                    <p>Phone: +91 1234567890</p>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">FB</a>
+                        <a href="#" aria-label="Instagram">IG</a>
+                        <a href="#" aria-label="Twitter">TW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Maa's Magic. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
