@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>filtering the products using css</title>
+</head>
+<body>
+    <div id="filter-bar">
+        <select id="filter" onchange="displayproducts()">
+            <option value="all">all products</option>
+            <option value="starters">starters</option>
+            <option value="maincourse">main course</option>
+            <option value="desserts">desserts</option>
+            <option value="drinks">drinks</option>
+        </select>
+        <!--<button id="filterbutton" onclick="displayproducts()">apply filters</button>-->
+    </div>
+
+    <div id="container">
+        <!--products added dynamically-->
+    </div>
+
+    <script>
+    const products = [
+        {name: "Cheese Balls", price: 5, category: "starters"},
+        {name: "Spring Rolls", price: 6, category: "starters"}, 
+        {name: "Caesar Salad", price: 7, category: "starters"},
+        {name: "Grilled Chicken", price: 12, category: "maincourse"},
+        {name: "Pasta Primavera", price: 10, category: "maincourse"},
+        {name: "Beef Steak", price: 15, category: "maincourse"},
+        {name: "Chocolate Cake", price: 8, category: "desserts"},
+        {name: "Ice Cream Sundae", price: 6, category: "desserts"},
+        {name: "Fruit Tart", price: 7, category: "desserts"},
+        {name: "Coke", price: 2, category: "drinks"},
+        {name: "Lemonade", price: 3, category: "drinks"},
+        {name: "Iced Tea", price: 4, category: "drinks"}
+    ];
+
+    const container = document.getElementById("container");
+
+    function displayproducts() {
+        const filterSelect = document.getElementById("filter").value;
+        container.innerHTML = ""; // Clear previous products
+
+        const filteredProducts = filterSelect === "all" 
+            ? products 
+            : products.filter(product => product.category === filterSelect);
+
+        filteredProducts.forEach(product => {
+            const productDiv = document.createElement("div");
+            productDiv.className = "product";
+            productDiv.innerHTML = `<h3>${product.name}</h3>
+                                    <p>Price: $${product.price}</p>
+                                    <p>Category: ${product.category}</p>`;
+            container.appendChild(productDiv);
+        });
+    }
+
+    displayproducts();
+</script>
+
+</body>
+</html>

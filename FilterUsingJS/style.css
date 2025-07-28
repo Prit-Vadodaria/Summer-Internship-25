@@ -1,0 +1,111 @@
+:root {
+    /* Color Palette */
+    --color-primary: rgb(0, 0, 0);
+    --color-secondary: rgba(0, 115, 255, 0.443);
+
+    
+    /* Typography */
+    --font-heading: 'Pacifico', cursive;
+    --font-body: 'Poppins', sans-serif;
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 4rem;
+    
+    /* Border Radius */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 16px;
+
+    /* Border Thickness */
+    --border-thickness: 2px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Container Widths */
+    --container-sm: 640px;
+    --container-md: 768px;
+    --container-lg: 1024px;
+    --container-xl: 1280px;
+
+    /* Animations */
+    --animation-duration: 0.3s;
+}
+
+/* Reset and Base Styles */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--color-primary);
+    background-color: #f4f4f4;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    margin-bottom: var(--spacing-sm);
+}
+
+select , button {
+    height: 50px;
+    width: 150px;
+    padding: 0 var(--spacing-sm);
+    border: var(--border-thickness) solid var(--color-primary);
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    font-size: large;
+}
+
+button:hover{
+    background-color: var(--color-primary);
+    color: white
+}
+
+#filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background-color: var(--color-secondary);
+    align-items: center;
+    justify-content: center;
+}
+
+#container {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#container > div {
+    margin: var(--spacing-md);
+    padding: var(--spacing-md);
+    border: var(--border-thickness) solid var(--color-primary);
+    border-radius: var(--border-radius-md);
+    background-color: var(--color-secondary);
+    text-align: center;
+    font-size: large;
+    width: 200px;
+    height: 200px;
+}
