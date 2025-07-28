@@ -37,9 +37,13 @@ A lightweight and interactive **Restaurant Management System** built using HTML,
 📦 Future Enhancements
 
 💾 Store order history and menu items using localStorage or a backend.
+
 📊 Add order analytics and dashboard.
+
 📱 Make the app fully mobile-friendly.
+
 🔐 Add secure login authentication.
+
 🧾 Enable PDF invoice generation for each order.
 
 ---
