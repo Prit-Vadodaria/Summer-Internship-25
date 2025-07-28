@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/monolith.min.css"/>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="A simple color picker application using Pickr library.">
+    <meta name="keywords" content="color picker, web application, Pickr library">
+    <meta name="author" content="Prit Vadodaria">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Color-Picker</title>
+</head>
+<body>
+    <div id="header">
+        <header>
+        <h1>Color Picker</h1>
+        <nav>
+            <ul>
+                <li><a href="themegenerator.html">Theme Generator</a></li>
+            </ul>
+        </nav>
+    </header>   
+    </div>
+    
+
+    <div class="container">
+        <div id="color-picker">
+            <div id="custom-picker" onchange="pickedcolor()"></div>
+            
+        </div>
+        
+            <div id="more-things">
+                <div id="picked-color">
+                    <p class="simple-text-b">BLACK</p>
+                    <p class="shadow-text-b">BLACK SHADOW</p>
+                    <p class="simple-text-w">WHITE</p>
+                    <p class="shadow-text-w">WHITE SHADOW</p>
+                </div>
+                <div id="picked-color-text">
+                    <p id="simple-text">Picked Color</p>
+                    <p id="shadow-text">Picked Color Shadow Black</p>
+                    <div id="background-selector">
+                        <button onclick="setBackground('white')">White</button>
+                        <button onclick="setBackground('black')">Black</button>
+                        <button onclick="setBackground('complement')">Complement</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="color-shades">
+                <!--shades added dynamically-->
+            </div>
+        
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+    <script>
+
+
+        //script for color picker
+
+
+        const pickr = Pickr.create({
+            el: '#custom-picker',
+            theme: 'monolith', // or 'monolith', 'classic' ,'nano'
+            appClass: 'pickr-class',
+            default: '#ff0000',
+                
+
+                // These two options make it always visible
+            inline: true,
+            showAlways: true,
+
+            components: {
+                // Main components
+                preview: true,
+                opacity: false,
+                hue: true,
+
+                // Input / output Options
+                interaction: {
+                    hex: true,
+                    rgba:true,
+                    hsla:true,
+                    input: true,
+                    save: false
+                }
+            }
+        });
+
+        pickr.on('init', instance => {
+            generateShades(); // Adds shades on load
+            pickedcolor();    // Updates the preview
+        });
+
+        pickr.on('change', (color) => {
+            generateShades();
+            pickedcolor();
+        });
+        function pickedcolor(){
+            const pickedColor = pickr.getColor().toHEXA().toString();
+            document.getElementById("picked-color").style.backgroundColor = pickedColor;
+            document.getElementById("simple-text").style.color = pickedColor;
+            document.getElementById("shadow-text").style.color = pickedColor;
+        }
+
+
+        // script fro shades
+
+
+        function hexToRgb(hex) {
+            let r = parseInt(hex.slice(1, 3), 16);
+            let g = parseInt(hex.slice(3, 5), 16);
+            let b = parseInt(hex.slice(5, 7), 16);
+            return { r, g, b };
+        }
+
+        function rgbToHex(r,g,b) {
+            return '#' + [r,g,b].map(x =>x.toString(16).padStart(2, "0")).join("");
+        }
+
+        function blendWith(rgb, percent) {
+            const p = percent / 100;
+            let r, g, b;
+            if (percent > 50) {
+                // lighten
+                r = Math.round(rgb.r + (255 - rgb.r) * (p - 0.50) / (1 - 0.50));
+                g = Math.round(rgb.g + (255 - rgb.g) * (p - 0.50) / (1 - 0.50));
+                b = Math.round(rgb.b + (255 - rgb.b) * (p - 0.50) / (1 - 0.50));
+            } else if (percent < 50) {
+                // darken
+                r = Math.round(rgb.r * (p / 0.50));
+                g = Math.round(rgb.g * (p / 0.50));
+                b = Math.round(rgb.b * (p / 0.50));
+            } else {
+                // base
+                r = rgb.r; g = rgb.g; b = rgb.b;
+            }
+            return rgbToHex(r, g, b);
+        }
+
+        const shades = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100];
+
+        function generateShades() {
+            const pickedColor = pickr.getColor().toHEXA().toString();
+            const rgb = hexToRgb(pickedColor);
+            const shadesContainer = document.getElementById('color-shades');
+            shadesContainer.innerHTML = ''; // Clear previous shades
+
+            shades.forEach(percent => {
+                const shadeColor = blendWith(rgb, percent);
+                const shadeDiv = document.createElement('div');
+                shadeDiv.className = 'shade';
+                shadeDiv.style.backgroundColor = shadeColor;
+                shadeDiv.textContent = `${percent}%   ${shadeColor}`;
+                shadeDiv.style.color = (percent > 50) ? '#000' : '#fff';
+                shadeDiv.addEventListener('click', () => {
+                    pickr.setColor(shadeColor);
+                    pickedcolor();
+                });
+                shadesContainer.appendChild(shadeDiv);
+            });
+        }
+
+
+        // script for background selector
+        function getComplement(hex) {
+            const rgb = hexToRgb(hex);
+            const comp = {
+                r: 255 - rgb.r,
+                g: 255 - rgb.g,
+                b: 255 - rgb.b
+            };
+            return rgbToHex(comp.r, comp.g, comp.b);
+        }
+
+        function setBackground(type) {
+            const pickedColor = pickr.getColor().toHEXA().toString();
+            const target = document.getElementById("picked-color-text");
+
+            let bg = "white";
+            if (type === 'black') bg = "black";
+            else if (type === 'complement') bg = getComplement(pickedColor);
+
+            target.style.backgroundColor = bg;
+        }
+
+
+
+        
+    </script>
+</body>
+</html>
