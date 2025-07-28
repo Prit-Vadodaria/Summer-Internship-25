@@ -23,13 +23,14 @@ A lightweight and interactive **Restaurant Management System** built using HTML,
 ---
 
 ## 📂 Project Structure
-
+```text
 ├── index.html          # Homepage with table management
 ├── menu.html           # Menu management page with add/remove functionality
 ├── signup.html         # Signup form with validation
 ├── form.css            # CSS for form elements
 ├── style.css           # CSS for general styling
 ├── common.js           # Shared JS with food item data
+```
 
 ---
 
